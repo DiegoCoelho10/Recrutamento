@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TALENTIQ | Inteligência que Conecta Pessoas a Resultados</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{--teal:#0C5D59;--teal-l:#0e7a74;--teal-d:#084340;--gold:#C9A77D;--gold-l:#dfc4a0;--gold-d:#a8845a;--dark:#041a19;--dark-2:#072220;--gray:#f4f7f6;--white:#fff;--text:#1a2e2d;--muted:#6b8280;--bdr:rgba(12,93,89,.12)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Montserrat',sans-serif;background:#fff;color:var(--text);overflow-x:hidden}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--dark)}::-webkit-scrollbar-thumb{background:var(--gold);border-radius:10px}
+header{position:fixed;top:0;left:0;right:0;z-index:900;transition:.4s}
+header.scrolled{background:rgba(4,26,25,.96);backdrop-filter:blur(20px);border-bottom:1px solid rgba(201,167,125,.15)}
+.nav{max-width:1280px;margin:0 auto;padding:20px 40px;display:flex;align-items:center;justify-content:space-between}
+.nav-brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+.bmark{width:42px;height:42px;background:linear-gradient(135deg,var(--teal),var(--teal-l));border:1.5px solid var(--gold);border-radius:10px;display:flex;align-items:center;justify-content:center}
+.bmark svg{width:22px;height:22px;fill:var(--gold)}
+.bname{font-size:1.1rem;font-weight:900;letter-spacing:2.5px;color:white}
+.bname span{color:var(--gold)}
+.nav-links{display:flex;align-items:center;gap:28px}
+.nl{color:rgba(255,255,255,.65);font-size:.78rem;font-weight:600;text-decoration:none;transition:.2s;cursor:pointer;background:none;border:none;font-family:inherit;letter-spacing:.5px}
+.nl:hover{color:var(--gold)}
+.nav-cta{padding:10px 24px;background:var(--gold);color:var(--dark);border:none;border-radius:8px;font-family:inherit;font-size:.78rem;font-weight:800;letter-spacing:1px;text-transform:uppercase;cursor:pointer;transition:.3s}
+.nav-cta:hover{background:var(--gold-l);transform:translateY(-1px)}
+.hero{min-height:100vh;background:linear-gradient(160deg,var(--dark) 0%,var(--dark-2) 45%,#0a3530 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:140px 40px 100px;position:relative;overflow:hidden}
+.hgrid{position:absolute;inset:0;background-image:linear-gradient(rgba(201,167,125,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(201,167,125,.04) 1px,transparent 1px);background-size:60px 60px;mask-image:radial-gradient(ellipse 80% 70% at 50% 50%,black 40%,transparent 100%)}
+.hglow{position:absolute;top:20%;left:50%;transform:translateX(-50%);width:700px;height:500px;background:radial-gradient(ellipse,rgba(12,93,89,.35) 0%,transparent 70%);pointer-events:none}
+.htag{display:inline-flex;align-items:center;gap:8px;background:rgba(201,167,125,.1);border:1px solid rgba(201,167,125,.25);padding:7px 18px;border-radius:50px;color:var(--gold);font-size:.68rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;margin-bottom:28px;animation:fd .8s ease both}
+.htag::before{content:'';width:6px;height:6px;background:var(--gold);border-radius:50%}
+.hero h1{font-family:'DM Serif Display',serif;font-size:clamp(2.8rem,6vw,5rem);font-weight:400;color:white;line-height:1.1;margin-bottom:24px;animation:fd .8s .1s ease both}
+.hero h1 em{font-style:italic;color:var(--gold)}
+.hero h1 strong{font-weight:400;color:var(--gold-l)}
+.hsub{font-size:clamp(.9rem,1.8vw,1.05rem);font-weight:300;color:rgba(255,255,255,.55);line-height:1.8;max-width:620px;margin:0 auto 48px;animation:fd .8s .2s ease both}
+.hacts{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;animation:fd .8s .3s ease both}
+.btn-p{padding:16px 36px;background:linear-gradient(135deg,var(--gold),var(--gold-d));color:var(--dark);border:none;border-radius:10px;font-family:inherit;font-size:.85rem;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;transition:.3s;box-shadow:0 12px 32px rgba(201,167,125,.3)}
+.btn-p:hover{transform:translateY(-3px);box-shadow:0 20px 44px rgba(201,167,125,.4)}
+.btn-o{padding:16px 36px;background:transparent;color:rgba(255,255,255,.75);border:1.5px solid rgba(255,255,255,.2);border-radius:10px;font-family:inherit;font-size:.85rem;font-weight:700;cursor:pointer;transition:.3s}
+.btn-o:hover{border-color:var(--gold);color:var(--gold)}
+.hstats{display:flex;margin-top:80px;border:1px solid rgba(201,167,125,.15);border-radius:16px;overflow:hidden;animation:fd .8s .4s ease both}
+.hstat{padding:22px 40px;text-align:center;border-right:1px solid rgba(201,167,125,.12);background:rgba(255,255,255,.03);backdrop-filter:blur(10px)}
+.hstat:last-child{border-right:none}
+.hstat-n{font-family:'DM Serif Display',serif;font-size:2rem;color:var(--gold);line-height:1}
+.hstat-l{font-size:.62rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.35);margin-top:4px}
+.pillars{background:var(--teal);display:grid;grid-template-columns:repeat(4,1fr)}
+.pill{padding:30px 20px;text-align:center;border-right:1px solid rgba(255,255,255,.08);transition:.3s;position:relative;overflow:hidden}
+.pill::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--gold);transform:scaleX(0);transition:.3s}
+.pill:hover::after{transform:scaleX(1)}
+.pill:hover{background:rgba(0,0,0,.1)}
+.pill:last-child{border-right:none}
+.pi{font-size:1.5rem;margin-bottom:8px;display:block}
+.pn{font-size:.67rem;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,.9)}
+.pd{font-size:.63rem;color:rgba(255,255,255,.45);margin-top:4px;font-weight:500}
+.sec{padding:96px 40px}
+.cnt{max-width:1200px;margin:0 auto}
+.stag{display:inline-flex;align-items:center;gap:8px;color:var(--teal);font-size:.63rem;font-weight:800;letter-spacing:3px;text-transform:uppercase;margin-bottom:12px}
+.stag::before{content:'';width:20px;height:2px;background:var(--gold)}
+.sh{font-family:'DM Serif Display',serif;font-size:clamp(1.9rem,3.5vw,2.9rem);font-weight:400;color:var(--dark);line-height:1.2;margin-bottom:16px}
+.sh em{font-style:italic;color:var(--teal)}
+.ssub{font-size:.92rem;color:var(--muted);line-height:1.8;max-width:560px}
+.ob-wrap{background:var(--dark);padding:96px 40px;position:relative;overflow:hidden}
+.ob-wrap::before{content:'OCEANO AZUL';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'DM Serif Display',serif;font-size:11rem;color:rgba(255,255,255,.015);white-space:nowrap;pointer-events:none;letter-spacing:20px}
+.ob-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.ob-left .stag{color:var(--gold)}
+.ob-sh{font-family:'DM Serif Display',serif;font-size:clamp(1.9rem,3.5vw,2.9rem);font-weight:400;color:white;line-height:1.2;margin-bottom:16px}
+.ob-sh em{font-style:italic;color:var(--gold)}
+.ob-sub{font-size:.92rem;color:rgba(255,255,255,.45);line-height:1.8}
+.ob-cards{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:36px}
+.ob-card{padding:20px;border-radius:12px;background:rgba(255,255,255,.03);border:1px solid rgba(201,167,125,.1);transition:.3s}
+.ob-card:hover{background:rgba(201,167,125,.06);border-color:rgba(201,167,125,.2)}
+.ob-ci{font-size:1.4rem;margin-bottom:8px}
+.ob-ct{font-size:.7rem;font-weight:800;color:var(--gold);letter-spacing:1px;text-transform:uppercase;margin-bottom:4px}
+.ob-cd{font-size:.7rem;color:rgba(255,255,255,.4);line-height:1.6}
+.ob-vis{background:linear-gradient(145deg,rgba(201,167,125,.08),rgba(12,93,89,.15));border:1px solid rgba(201,167,125,.15);border-radius:20px;padding:36px}
+.ob-vt{font-size:.6rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:20px}
+.ob-row{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+.ob-lbl{font-size:.7rem;color:rgba(255,255,255,.5);flex:0 0 170px;font-weight:600}
+.ob-lbl.us{color:rgba(255,255,255,.85)}
+.ob-trk{flex:1;height:6px;background:rgba(255,255,255,.06);border-radius:10px;overflow:hidden}
+.ob-bar{height:100%;border-radius:10px;transition:width 1.5s cubic-bezier(.4,0,.2,1)}
+.ob-bar.th{background:rgba(255,255,255,.2)}
+.ob-bar.us{background:linear-gradient(90deg,var(--teal),var(--gold))}
+.ob-leg{display:flex;gap:18px;margin-top:18px}
+.ob-li{display:flex;align-items:center;gap:7px;font-size:.63rem;color:rgba(255,255,255,.4);font-weight:600}
+.ob-ld{width:10px;height:10px;border-radius:3px}
+.fn-wrap{background:var(--gray);padding:96px 40px}
+.fn-hd{text-align:center;margin-bottom:60px}
+.fn-hd .ssub{max-width:640px;margin:0 auto}
+.fn-steps{display:grid;grid-template-columns:repeat(4,1fr);position:relative}
+.fn-steps::before{content:'';position:absolute;top:46px;left:12%;right:12%;height:2px;background:linear-gradient(90deg,var(--gold),var(--teal),var(--gold));opacity:.2}
+.fn-step{padding:0 20px;text-align:center;position:relative;z-index:1}
+.fn-num{width:56px;height:56px;border-radius:50%;background:white;border:2px solid var(--bdr);display:flex;align-items:center;justify-content:center;margin:0 auto 18px;font-family:'DM Serif Display',serif;font-size:1.3rem;color:var(--teal);box-shadow:0 4px 20px rgba(12,93,89,.1);transition:.3s}
+.fn-step.hl .fn-num{background:linear-gradient(135deg,var(--teal),var(--teal-l));color:var(--gold);border-color:var(--teal);box-shadow:0 8px 28px rgba(12,93,89,.25)}
+.fn-step:hover .fn-num{transform:scale(1.1)}
+.fn-lbl{font-size:.72rem;font-weight:800;color:var(--teal);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px}
+.fn-desc{font-size:.73rem;color:var(--muted);line-height:1.6}
+.fn-bdg{display:inline-block;margin-top:8px;padding:3px 10px;border-radius:20px;font-size:.6rem;font-weight:800;letter-spacing:1px;text-transform:uppercase;background:rgba(201,167,125,.15);color:var(--gold-d)}
+.tr-wrap{padding:96px 40px;background:white}
+.tr-grid{display:grid;grid-template-columns:5fr 7fr;gap:64px;align-items:start}
+.blks{display:flex;flex-direction:column;gap:12px;margin-top:28px}
+.blk{display:flex;align-items:flex-start;gap:16px;padding:18px 20px;border-radius:12px;border:1.5px solid var(--bdr);background:var(--gray);transition:.3s}
+.blk:hover{border-color:var(--teal);background:rgba(12,93,89,.03);transform:translateX(4px)}
+.blkn{width:36px;height:36px;border-radius:9px;flex-shrink:0;background:linear-gradient(135deg,var(--teal),var(--teal-l));display:flex;align-items:center;justify-content:center;font-family:'DM Serif Display',serif;font-size:.85rem;font-weight:700;color:var(--gold)}
+.blk h4{font-size:.82rem;font-weight:800;color:var(--teal);margin-bottom:3px}
+.blk p{font-size:.72rem;color:var(--muted);line-height:1.5}
+.blkt{font-size:.62rem;font-weight:700;color:var(--gold-d);margin-top:4px}
+.blkt::before{content:'\\23F1 '}
+.sbox{background:var(--dark);border-radius:20px;padding:36px;border:1px solid rgba(201,167,125,.12);position:relative;overflow:hidden}
+.sbox::before{content:'';position:absolute;top:-40px;right:-40px;width:180px;height:180px;background:radial-gradient(circle,rgba(12,93,89,.4),transparent 70%);pointer-events:none}
+.sbt{font-size:.6rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:22px}
+.sb-bars{display:flex;flex-direction:column;gap:14px;margin-bottom:26px}
+.sb-row{display:flex;align-items:center;gap:14px}
+.sb-lbl{font-size:.7rem;font-weight:700;color:rgba(255,255,255,.6);width:110px;flex-shrink:0}
+.sb-trk{flex:1;height:8px;background:rgba(255,255,255,.07);border-radius:10px;overflow:hidden}
+.sb-fil{height:100%;border-radius:10px;transition:width 1.5s ease}
+.sb-fil.c{background:linear-gradient(90deg,#0e7a74,#22d3cb)}
+.sb-fil.l{background:linear-gradient(90deg,var(--gold-d),var(--gold))}
+.sb-fil.m{background:linear-gradient(90deg,#7c3aed,#a78bfa)}
+.sb-pct{font-size:.72rem;font-weight:800;color:rgba(255,255,255,.5);flex-shrink:0;width:32px;text-align:right}
+.sb-div{height:1px;background:rgba(255,255,255,.06);margin:22px 0}
+.sb-fl{font-size:.6rem;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:rgba(255,255,255,.3);text-align:center;margin-bottom:8px}
+.sb-fn{font-family:'DM Serif Display',serif;font-size:3.5rem;color:var(--gold);line-height:1;text-align:center}
+.sb-fm{font-size:.67rem;color:rgba(255,255,255,.3);text-align:center;margin-top:4px}
+.sb-res{display:flex;gap:12px;margin-top:16px}
+.sb-ri{flex:1;padding:16px;border-radius:12px;text-align:center}
+.sb-ri.pass{background:rgba(5,150,105,.12);border:1.5px solid rgba(5,150,105,.25)}
+.sb-ri.pool{background:rgba(100,116,139,.08);border:1.5px solid rgba(100,116,139,.15)}
+.sb-ric{font-size:1.5rem;display:block;margin-bottom:6px}
+.sb-ril{font-size:.65rem;font-weight:800;letter-spacing:1px;text-transform:uppercase}
+.sb-ri.pass .sb-ril{color:#34d399}
+.sb-ri.pool .sb-ril{color:rgba(255,255,255,.35)}
+.sb-rid{font-size:.63rem;color:rgba(255,255,255,.3);margin-top:3px;line-height:1.4}
+.btn-sc{width:100%;margin-top:16px;padding:14px;background:var(--teal);color:var(--gold);border:none;border-radius:10px;font-family:inherit;font-size:.82rem;font-weight:800;cursor:pointer;transition:.3s}
+.btn-sc:hover{background:var(--teal-d)}
+.emp-wrap{background:linear-gradient(160deg,var(--teal-d),var(--teal));padding:96px 40px}
+.emp-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.emp-sh{font-family:'DM Serif Display',serif;font-size:clamp(1.9rem,3.5vw,2.9rem);font-weight:400;color:white;line-height:1.2;margin-bottom:16px}
+.emp-sh em{font-style:italic;color:var(--gold-l)}
+.emp-sub{font-size:.92rem;color:rgba(255,255,255,.55);line-height:1.8}
+.emp-feats{display:flex;flex-direction:column;gap:10px;margin-top:28px}
+.emp-ft{display:flex;align-items:flex-start;gap:14px;padding:16px 18px;background:rgba(255,255,255,.05);border-radius:10px;border:1px solid rgba(255,255,255,.08);transition:.3s}
+.emp-ft:hover{background:rgba(255,255,255,.09)}
+.emp-ic{font-size:1.2rem;flex-shrink:0}
+.emp-ft strong{display:block;font-size:.78rem;font-weight:700;color:white;margin-bottom:2px}
+.emp-ft p{font-size:.7rem;color:rgba(255,255,255,.45);line-height:1.5}
+.emp-kpis{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.kpi{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:26px 22px;text-align:center;transition:.3s}
+.kpi:hover{background:rgba(201,167,125,.1);border-color:rgba(201,167,125,.2)}
+.kpi-n{font-family:'DM Serif Display',serif;font-size:2.2rem;color:var(--gold);line-height:1;margin-bottom:6px}
+.kpi-l{font-size:.63rem;font-weight:700;color:rgba(255,255,255,.4);letter-spacing:1px;text-transform:uppercase;line-height:1.4}
+.vagas-wrap{padding:96px 40px;background:var(--gray)}
+.vagas-hd{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:36px;flex-wrap:wrap;gap:20px}
+.vgcards{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:16px}
+.vgc{background:white;border-radius:16px;padding:26px;border:1.5px solid var(--bdr);transition:.3s;display:flex;flex-direction:column;gap:14px}
+.vgc:hover{box-shadow:0 16px 48px rgba(12,93,89,.1);transform:translateY(-3px);border-color:var(--teal)}
+.vca{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:20px;background:rgba(12,93,89,.07);color:var(--teal);font-size:.63rem;font-weight:800;text-transform:uppercase;letter-spacing:1px}
+.vct{font-size:1.02rem;font-weight:800;color:var(--dark);line-height:1.3}
+.vcd{font-size:.76rem;color:var(--muted);line-height:1.6}
+.vctgs{display:flex;flex-wrap:wrap;gap:6px}
+.vctg{padding:3px 10px;border-radius:20px;background:var(--gray);font-size:.63rem;font-weight:700;color:var(--muted)}
+.vcf{display:flex;align-items:center;justify-content:space-between;margin-top:auto}
+.vcs{font-size:.82rem;font-weight:800;color:var(--teal)}
+.btn-cnd{padding:9px 20px;background:var(--teal);color:var(--gold);border:none;border-radius:8px;font-family:inherit;font-size:.7rem;font-weight:800;cursor:pointer;transition:.2s}
+.btn-cnd:hover{background:var(--teal-d);transform:translateY(-1px)}
+.btn-all{padding:12px 28px;border:1.5px solid var(--teal);color:var(--teal);border-radius:9px;background:none;font-family:inherit;font-size:.78rem;font-weight:800;cursor:pointer;transition:.3s}
+.btn-all:hover{background:var(--teal);color:var(--gold)}
+.cta-wrap{background:var(--dark);padding:100px 40px;text-align:center;position:relative;overflow:hidden}
+.cta-wrap::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 50% 100%,rgba(12,93,89,.4),transparent);pointer-events:none}
+.btn-big{padding:18px 48px;background:linear-gradient(135deg,var(--gold),var(--gold-d));color:var(--dark);border:none;border-radius:12px;font-family:inherit;font-size:.9rem;font-weight:900;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;transition:.3s;box-shadow:0 16px 40px rgba(201,167,125,.25);position:relative;z-index:1}
+.btn-big:hover{transform:translateY(-4px);box-shadow:0 24px 52px rgba(201,167,125,.4)}
+footer{background:linear-gradient(160deg,#020d0d,var(--dark));padding:80px 40px 40px;color:rgba(255,255,255,.5)}
+.ftg{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;max-width:1200px;margin:0 auto 60px}
+.ftbrand{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.ftbn{font-size:.95rem;font-weight:900;letter-spacing:2px;color:white}
+.ftbn span{color:var(--gold)}
+.ftd{font-size:.73rem;line-height:1.8;color:rgba(255,255,255,.35)}
+.ftcol h4{font-size:.63rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+.ftcol ul{list-style:none}
+.ftcol li{font-size:.73rem;color:rgba(255,255,255,.35);padding:4px 0;cursor:pointer;transition:.2s}
+.ftcol li:hover{color:var(--gold)}
+.ftbot{max-width:1200px;margin:0 auto;padding-top:28px;border-top:1px solid rgba(255,255,255,.06);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.ftcp{font-size:.67rem}
+.fttg{font-size:.67rem;color:rgba(255,255,255,.2);font-style:italic}
+#vfs{display:none;position:fixed;inset:0;background:white;z-index:800;flex-direction:column}
+.vfbar{background:var(--dark);padding:14px 28px;display:flex;align-items:center;gap:20px;border-bottom:1px solid rgba(201,167,125,.1)}
+.btn-bk{padding:8px 18px;background:rgba(201,167,125,.1);border:1px solid rgba(201,167,125,.2);border-radius:7px;color:var(--gold);font-family:inherit;font-size:.73rem;font-weight:700;cursor:pointer;transition:.2s}
+.btn-bk:hover{background:rgba(201,167,125,.2)}
+.vft{color:rgba(255,255,255,.5);font-size:.76rem;font-weight:600}
+#modal-triagem{display:none;position:fixed;inset:0;background:rgba(4,26,25,.88);backdrop-filter:blur(16px);z-index:9999;overflow-y:auto;align-items:flex-start;justify-content:center;padding:40px 20px}
+#modal-triagem.open{display:flex}
+.mtbox{background:white;border-radius:24px;width:100%;max-width:720px;overflow:hidden;box-shadow:0 60px 120px rgba(0,0,0,.4);animation:pop .4s cubic-bezier(.175,.885,.32,1.275) both}
+@keyframes pop{from{opacity:0;transform:translateY(30px) scale(.97)}to{opacity:1;transform:none}}
+.mthd{background:linear-gradient(135deg,var(--dark),var(--dark-2));padding:28px 36px;display:flex;align-items:center;justify-content:space-between}
+.mthd h2{font-family:'DM Serif Display',serif;font-size:1.4rem;font-weight:400;color:white;margin-bottom:3px}
+.mthd p{font-size:.7rem;color:rgba(255,255,255,.4)}
+.mtx{background:none;border:none;color:rgba(255,255,255,.4);font-size:22px;cursor:pointer;transition:.2s;line-height:1}
+.mtx:hover{color:white}
+.mtprog{padding:0 36px 22px;background:var(--dark)}
+.mtsegs{display:flex;border-radius:10px;overflow:hidden;margin-bottom:8px}
+.mseg{flex:1;height:4px;background:rgba(255,255,255,.08);transition:.4s}
+.mseg.done{background:var(--gold)}
+.mseg.active{background:var(--teal)}
+.mtlbls{display:flex;justify-content:space-between}
+.mtlbl{font-size:.57rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.25);transition:.3s}
+.mtlbl.active{color:var(--gold)}
+.mtbody{padding:36px}
+.mtstep{display:none}
+.mtstep.active{display:block}
+.fg2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.fgf{grid-column:span 2}
+.fg label{font-size:.6rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--muted);display:block;margin-bottom:5px}
+.fg input,.fg select,.fg textarea{width:100%;padding:11px 14px;border:1.5px solid var(--bdr);border-radius:9px;font-family:inherit;font-size:.85rem;transition:.2s}
+.fg input:focus,.fg select:focus,.fg textarea:focus{outline:none;border-color:var(--teal)}
+.fg textarea{resize:none;height:78px;line-height:1.6}
+.qblk{margin-bottom:26px}
+.qhd{display:flex;align-items:flex-start;gap:14px;margin-bottom:12px}
+.qnum{width:32px;height:32px;border-radius:8px;flex-shrink:0;background:var(--gray);display:flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:900;color:var(--teal)}
+.qtxt{font-size:.86rem;font-weight:700;color:var(--dark);line-height:1.5;padding-top:5px}
+.qopts{display:flex;flex-direction:column;gap:8px;padding-left:46px}
+.qopt{display:flex;align-items:flex-start;gap:10px;padding:12px 14px;border-radius:9px;border:1.5px solid var(--bdr);cursor:pointer;transition:.2s;background:var(--gray)}
+.qopt:hover{border-color:var(--teal);background:rgba(12,93,89,.03)}
+.qopt.sel{border-color:var(--teal);background:rgba(12,93,89,.06)}
+.qcirc{width:18px;height:18px;border-radius:50%;border:2px solid var(--bdr);flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;transition:.2s}
+.qopt.sel .qcirc{border-color:var(--teal);background:var(--teal)}
+.qopt.sel .qcirc::after{content:'';width:6px;height:6px;background:white;border-radius:50%;display:block}
+.qopt-t{font-size:.76rem;color:var(--text);line-height:1.5}
+.qopt.sel .qopt-t{color:var(--teal);font-weight:600}
+.motq{margin-bottom:18px}
+.motq label{font-size:.75rem;font-weight:700;color:var(--teal);display:flex;align-items:center;gap:7px;margin-bottom:6px}
+.motq label::before{content:'\2192';color:var(--gold);font-weight:900}
+.motq textarea{width:100%;padding:12px 14px;border:1.5px solid var(--bdr);border-radius:9px;font-family:inherit;font-size:.8rem;resize:none;height:68px;line-height:1.6;transition:.2s}
+.motq textarea:focus{outline:none;border-color:var(--teal)}
+.res-box{text-align:center;padding:30px;border-radius:16px;margin-bottom:22px}
+.res-box.pass{background:linear-gradient(135deg,rgba(5,150,105,.08),rgba(5,150,105,.04));border:2px solid rgba(5,150,105,.25)}
+.res-box.pool{background:linear-gradient(135deg,rgba(12,93,89,.06),rgba(12,93,89,.03));border:2px solid rgba(12,93,89,.15)}
+.res-ic{font-size:2.8rem;display:block;margin-bottom:10px}
+.res-pct{font-family:'DM Serif Display',serif;font-size:3.5rem;line-height:1}
+.res-box.pass .res-pct{color:var(--teal)}
+.res-box.pool .res-pct{color:var(--muted)}
+.res-lbl{font-size:.75rem;font-weight:800;text-transform:uppercase;letter-spacing:1.5px;margin:6px 0 10px}
+.res-box.pass .res-lbl{color:var(--teal)}
+.res-box.pool .res-lbl{color:var(--muted)}
+.res-desc{font-size:.8rem;color:var(--muted);line-height:1.7;max-width:480px;margin:0 auto}
+.res-bd{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:20px}
+.rbd{padding:14px;background:var(--gray);border-radius:10px;text-align:center}
+.rbd-sc{font-size:1.3rem;font-weight:800}
+.rbd-lb{font-size:.6rem;color:var(--muted);font-weight:700;margin-top:3px}
+.mtfoot{padding:18px 36px 26px;display:flex;gap:12px;justify-content:space-between;align-items:center;border-top:1px solid var(--bdr)}
+.mtfi{font-size:.7rem;color:var(--muted)}
+.mtbtns{display:flex;gap:10px}
+.btn-bks{padding:11px 22px;background:var(--gray);border:none;border-radius:9px;font-family:inherit;font-size:.76rem;font-weight:700;color:var(--muted);cursor:pointer;transition:.2s}
+.btn-bks:hover{background:var(--bdr)}
+.btn-nxt{padding:11px 28px;background:var(--teal);color:var(--gold);border:none;border-radius:9px;font-family:inherit;font-size:.76rem;font-weight:800;cursor:pointer;transition:.2s}
+.btn-nxt:hover{background:var(--teal-d)}
+.btn-nxt:disabled{opacity:.4;cursor:default;pointer-events:none}
+.tw{position:fixed;bottom:24px;right:24px;z-index:99999;display:flex;flex-direction:column;gap:8px}
+.tm{background:var(--dark);color:white;padding:12px 18px;border-radius:10px;font-size:.76rem;font-weight:600;border-left:3px solid var(--gold);box-shadow:0 8px 24px rgba(0,0,0,.3);animation:ti .3s ease;min-width:270px}
+@keyframes ti{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:none}}
+.tm.success{border-left-color:#22c55e}
+.tm.danger{border-left-color:#ef4444}
+@keyframes fd{from{opacity:0;transform:translateY(-16px)}to{opacity:1;transform:none}}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+.reveal.vis{opacity:1;transform:none}
+@media(max-width:900px){.nav-links{display:none}.ob-grid,.tr-grid,.emp-grid,.ftg{grid-template-columns:1fr}.fn-steps{grid-template-columns:1fr 1fr}.hstats{flex-direction:column}.hstat{border-right:none;border-bottom:1px solid rgba(201,167,125,.12)}.pillars{grid-template-columns:1fr 1fr}.ob-cards{grid-template-columns:1fr}.emp-kpis{grid-template-columns:1fr 1fr}.fg2{grid-template-columns:1fr}.fgf{grid-column:span 1}.sec{padding:64px 24px}}
+</style>
+</head>
+<body>
+<header id="sh">
+  <div class="nav">
+    <a href="#" class="nav-brand">
+      <div class="bmark"><svg viewBox="0 0 24 24"><path d="M12,3L1,9L12,15L21,10.09V17H23V9M5,13.18V17.18L12,21L19,17.18V13.18L12,17L5,13.18Z"/></svg></div>
+      <div class="bname">TALENT<span>IQ</span></div>
+    </a>
+    <nav class="nav-links">
+      <button class="nl" onclick="goTo('#funil')">Como Funciona</button>
+      <button class="nl" onclick="goTo('#empresas')">Para Empresas</button>
+      <button class="nl" onclick="abrirVagas()">Vagas Abertas</button>
+      <button class="nl" onclick="goTo('#contato')">Contato</button>
+    </nav>
+    <button class="nav-cta" onclick="abrirTriagem()">Quero me Candidatar</button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hgrid"></div><div class="hglow"></div>
+  <div class="htag">&#129504; Plataforma de Recrutamento Inteligente</div>
+  <h1>Sua carreira merece<br>mais do que um <em>curr&#237;culo</em>.<br>Merece <strong>intelig&#234;ncia.</strong></h1>
+  <p class="hsub">No TALENTIQ, a sele&#231;&#227;o come&#231;a com dados reais sobre voc&#234; &#8212; n&#227;o s&#243; um arquivo PDF. Prove seu potencial antes mesmo da entrevista e receba retorno personalizado independente do resultado.</p>
+  <div class="hacts">
+    <button class="btn-p" onclick="abrirTriagem()">&#127919; Iniciar Minha Candidatura</button>
+    <button class="btn-o" onclick="abrirVagas()">Ver Vagas Abertas</button>
+  </div>
+  <div class="hstats">
+    <div class="hstat"><div class="hstat-n">3&#215;</div><div class="hstat-l">Mais precis&#227;o que curr&#237;culos</div></div>
+    <div class="hstat"><div class="hstat-n">72%</div><div class="hstat-l">Redu&#231;&#227;o no tempo de sele&#231;&#227;o</div></div>
+    <div class="hstat"><div class="hstat-n">40%</div><div class="hstat-l">Maior reten&#231;&#227;o p&#243;s-contrata&#231;&#227;o</div></div>
+    <div class="hstat"><div class="hstat-n">100%</div><div class="hstat-l">Feedback humanizado</div></div>
+  </div>
+</section>
+
+<div class="pillars">
+  <div class="pill"><span class="pi">&#127919;</span><div class="pn">Triagem Inteligente</div><div class="pd">Avalia&#231;&#227;o cient&#237;fica antes da entrevista</div></div>
+  <div class="pill"><span class="pi">&#129504;</span><div class="pn">Soft Skills</div><div class="pd">Compet&#234;ncias comportamentais mapeadas</div></div>
+  <div class="pill"><span class="pi">&#128202;</span><div class="pn">Dados &amp; Evid&#234;ncias</div><div class="pd">Decis&#245;es baseadas em score objetivo</div></div>
+  <div class="pill"><span class="pi">&#128172;</span><div class="pn">Feedback Humano</div><div class="pd">Retorno personalizado para todos</div></div>
+</div>
+
+<div class="ob-wrap">
+  <div class="cnt">
+    <div class="ob-grid">
+      <div class="ob-left reveal">
+        <div class="stag">Estrat&#233;gia TALENTIQ</div>
+        <h2 class="ob-sh">N&#243;s n&#227;o competimos.<br><em>Criamos um<br>novo espa&#231;o.</em></h2>
+        <p class="ob-sub">Enquanto o mercado filtra curr&#237;culos manualmente e marca entrevistas sem crit&#233;rio, o TALENTIQ usa intelig&#234;ncia estruturada para identificar os candidatos certos &#8212; antes de qualquer conversa.</p>
+        <div class="ob-cards">
+          <div class="ob-card"><div class="ob-ci">&#10060;</div><div class="ob-ct">Eliminamos</div><div class="ob-cd">Triagem manual subjetiva baseada em curr&#237;culo e primeiras impress&#245;es</div></div>
+          <div class="ob-card"><div class="ob-ci">&#11015;&#65039;</div><div class="ob-ct">Reduzimos</div><div class="ob-cd">Tempo do recrutador no topo do funil &#8212; de horas para minutos</div></div>
+          <div class="ob-card"><div class="ob-ci">&#11014;&#65039;</div><div class="ob-ct">Elevamos</div><div class="ob-cd">Qualidade e precis&#227;o dos candidatos que chegam &#224; entrevista</div></div>
+          <div class="ob-card"><div class="ob-ci">&#10024;</div><div class="ob-ct">Criamos</div><div class="ob-cd">Experi&#234;ncia de sele&#231;&#227;o que respeita e educa o candidato</div></div>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="ob-vis">
+          <div class="ob-vt">Comparativo de Mercado</div>
+          <div class="ob-row"><div class="ob-lbl">Precis&#227;o preditiva</div><div class="ob-trk"><div class="ob-bar th" style="width:18%"></div></div></div>
+          <div class="ob-row"><div class="ob-lbl us">Precis&#227;o preditiva</div><div class="ob-trk"><div class="ob-bar us" id="obu1" style="width:0%"></div></div></div>
+          <div style="height:8px"></div>
+          <div class="ob-row"><div class="ob-lbl">Exp. do candidato</div><div class="ob-trk"><div class="ob-bar th" style="width:24%"></div></div></div>
+          <div class="ob-row"><div class="ob-lbl us">Exp. do candidato</div><div class="ob-trk"><div class="ob-bar us" id="obu2" style="width:0%"></div></div></div>
+          <div style="height:8px"></div>
+          <div class="ob-row"><div class="ob-lbl">Velocidade sele&#231;&#227;o</div><div class="ob-trk"><div class="ob-bar th" style="width:31%"></div></div></div>
+          <div class="ob-row"><div class="ob-lbl us">Velocidade sele&#231;&#227;o</div><div class="ob-trk"><div class="ob-bar us" id="obu3" style="width:0%"></div></div></div>
+          <div class="ob-leg">
+            <div class="ob-li"><div class="ob-ld" style="background:rgba(255,255,255,.2)"></div>Mercado tradicional</div>
+            <div class="ob-li"><div class="ob-ld" style="background:linear-gradient(90deg,#0e7a74,#C9A77D)"></div>TALENTIQ</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="fn-wrap" id="funil">
+  <div class="cnt">
+    <div class="fn-hd reveal">
+      <div class="stag">O Processo</div>
+      <h2 class="sh">Da candidatura &#224; <em>contrata&#231;&#227;o</em><br>em 4 etapas precisas</h2>
+      <p class="ssub">Cada etapa elimina por um crit&#233;rio diferente. Sem misturar crit&#233;rios, sem vi&#233;s, sem achismo. Ci&#234;ncia aplicada ao recrutamento.</p>
+    </div>
+    <div class="fn-steps reveal">
+      <div class="fn-step"><div class="fn-num">&#128221;</div><div class="fn-lbl">Cadastro</div><div class="fn-desc">Dados pessoais e &#225;rea de interesse em menos de 3 minutos.</div></div>
+      <div class="fn-step hl"><div class="fn-num">&#129504;</div><div class="fn-lbl">Triagem Inteligente</div><div class="fn-desc">3 blocos de avalia&#231;&#227;o automatizada &#8212; fit cultural, racioc&#237;nio e motiva&#231;&#227;o.</div><span class="fn-bdg">Exclusivo TALENTIQ</span></div>
+      <div class="fn-step"><div class="fn-num">&#127909;</div><div class="fn-lbl">Entrevista</div><div class="fn-desc">Apenas candidatos com score &#8805;65% s&#227;o convocados para entrevista.</div></div>
+      <div class="fn-step"><div class="fn-num">&#129309;</div><div class="fn-lbl">Admiss&#227;o</div><div class="fn-desc">Pr&#233;-selecionados avan&#231;am para proposta e documenta&#231;&#227;o de admiss&#227;o.</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="tr-wrap">
+  <div class="cnt">
+    <div class="tr-grid">
+      <div class="reveal">
+        <div class="stag">Avalia&#231;&#227;o Estruturada</div>
+        <h2 class="sh">Prove seu valor<br><em>antes</em> da entrevista</h2>
+        <p class="ssub">Nossa triagem usa instrumentos com validade preditiva comprovada pela ci&#234;ncia &#8212; n&#227;o intui&#231;&#227;o, n&#227;o curr&#237;culo, n&#227;o apar&#234;ncia. At&#233; 3&#215; mais precisos que an&#225;lise de curr&#237;culo isolada (Schmidt &amp; Hunter, 1998).</p>
+        <div class="blks">
+          <div class="blk"><div class="blkn">1</div><div><h4>Fit Cultural &amp; Valores</h4><p>Cen&#225;rios situacionais que mapeiam seus valores reais: responsabilidade, proatividade, colabora&#231;&#227;o e adaptabilidade. N&#227;o existe resposta certa &#8212; existe fit.</p><div class="blkt">5 minutos &#183; 5 cen&#225;rios</div></div></div>
+          <div class="blk"><div class="blkn">2</div><div><h4>Racioc&#237;nio Situacional</h4><p>Quest&#245;es contextualizadas na sua &#225;rea de interesse. Avalia capacidade de an&#225;lise e resolu&#231;&#227;o de problemas reais do dia a dia profissional.</p><div class="blkt">7 minutos &#183; 5 quest&#245;es</div></div></div>
+          <div class="blk"><div class="blkn">3</div><div><h4>Question&#225;rio Motivacional</h4><p>3 perguntas abertas que revelam inten&#231;&#227;o, hist&#243;rico e expectativas. Lido pelo recrutador com aten&#231;&#227;o &#8212; aqui voc&#234; se diferencia.</p><div class="blkt">3 minutos &#183; 3 perguntas</div></div></div>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="sbox">
+          <div class="sbt">Simula&#231;&#227;o de Score de Triagem</div>
+          <div class="sb-bars">
+            <div class="sb-row"><div class="sb-lbl">Fit Cultural</div><div class="sb-trk"><div class="sb-fil c" id="sbc" style="width:0%"></div></div><div class="sb-pct">80%</div></div>
+            <div class="sb-row"><div class="sb-lbl">Racioc&#237;nio</div><div class="sb-trk"><div class="sb-fil l" id="sbl" style="width:0%"></div></div><div class="sb-pct">60%</div></div>
+            <div class="sb-row"><div class="sb-lbl">Motivacional</div><div class="sb-trk"><div class="sb-fil m" id="sbm" style="width:0%"></div></div><div class="sb-pct">100%</div></div>
+          </div>
+          <div class="sb-div"></div>
+          <div class="sb-fl">Score Final Ponderado</div>
+          <div class="sb-fn" id="sbf">0%</div>
+          <div class="sb-fm">m&#237;nimo 65% para avan&#231;ar &#224; entrevista</div>
+          <div class="sb-res">
+            <div class="sb-ri pass"><span class="sb-ric">&#11088;</span><div class="sb-ril">Pr&#233;-Selecionado</div><div class="sb-rid">Score &#8805;65%<br>Convocado para entrevista</div></div>
+            <div class="sb-ri pool"><span class="sb-ric">&#128193;</span><div class="sb-ril">Banco de Talentos</div><div class="sb-rid">Score &lt;65%<br>Perfil mantido para futuras vagas</div></div>
+          </div>
+        </div>
+        <button class="btn-sc" onclick="abrirTriagem()">&#127919; Fazer Minha Avalia&#231;&#227;o Agora</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="emp-wrap" id="empresas">
+  <div class="cnt">
+    <div class="emp-grid">
+      <div class="reveal">
+        <div class="stag" style="color:var(--gold-l)">Para Contratantes</div>
+        <h2 class="emp-sh">Voc&#234; s&#243; entrevista<br>quem <em>j&#225; foi</em><br>aprovado.</h2>
+        <p class="emp-sub">Seu tempo &#233; estrat&#233;gico demais para ser gasto triando curr&#237;culos. O TALENTIQ entrega candidatos que j&#225; passaram por 3 camadas de avalia&#231;&#227;o estruturada.</p>
+        <div class="emp-feats">
+          <div class="emp-ft"><div class="emp-ic">&#128202;</div><div><strong>Score objetivo por candidato</strong><p>Cada candidato chega com nota de fit cultural, racioc&#237;nio e motiva&#231;&#227;o &#8212; dados, n&#227;o achismo.</p></div></div>
+          <div class="emp-ft"><div class="emp-ic">&#9889;</div><div><strong>Funil 72% mais r&#225;pido</strong><p>A triagem automatizada reduz o tempo do processo de semanas para dias.</p></div></div>
+          <div class="emp-ft"><div class="emp-ic">&#127919;</div><div><strong>Validade preditiva comprovada</strong><p>Instrumentos baseados em Schmidt &amp; Hunter: at&#233; 3&#215; mais precisos que an&#225;lise de curr&#237;culo isolada.</p></div></div>
+          <div class="emp-ft"><div class="emp-ic">&#128172;</div><div><strong>Feedback humanizado para todos</strong><p>Candidatos n&#227;o aprovados recebem retorno personalizado &#8212; protegendo sua marca empregadora.</p></div></div>
+        </div>
+      </div>
+      <div class="emp-kpis reveal">
+        <div class="kpi"><div class="kpi-n">87%</div><div class="kpi-l">Candidatos entrevistados que avan&#231;am</div></div>
+        <div class="kpi"><div class="kpi-n">3&#215;</div><div class="kpi-l">Mais eficiente que triagem manual</div></div>
+        <div class="kpi"><div class="kpi-n">40%</div><div class="kpi-l">Maior reten&#231;&#227;o nos primeiros 6 meses</div></div>
+        <div class="kpi"><div class="kpi-n">100%</div><div class="kpi-l">Dados estruturados por candidato</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="vagas-wrap" id="vagas">
+  <div class="cnt">
+    <div class="vagas-hd reveal">
+      <div><div class="stag">Oportunidades</div><h2 class="sh" style="margin-bottom:0">Vagas <em>abertas</em> agora</h2></div>
+      <button class="btn-all" onclick="abrirVagas()">Ver todas as vagas &rarr;</button>
+    </div>
+    <div class="vgcards">
+      <div class="vgc reveal">
+        <div class="vca">&#127970; Administrativo</div>
+        <div class="vct">Assistente Administrativo Sr.</div>
+        <div class="vcd">Apoio &#224;s rotinas administrativas e financeiras com dom&#237;nio de ferramentas Office e boa comunica&#231;&#227;o escrita.</div>
+        <div class="vctgs"><span class="vctg">Presencial &middot; RJ</span><span class="vctg">CLT</span><span class="vctg">Financeiro</span></div>
+        <div class="vcf"><span class="vcs">R$ 2.500 &#8211; 3.800</span><button class="btn-cnd" onclick="abrirTriagem('Administrativo')">Candidatar</button></div>
+      </div>
+      <div class="vgc reveal">
+        <div class="vca">&#128665; Log&#237;stica</div>
+        <div class="vct">Coordenador de Log&#237;stica</div>
+        <div class="vcd">Gest&#227;o de rotas, equipe operacional e indicadores de desempenho. Experi&#234;ncia em WMS desej&#225;vel.</div>
+        <div class="vctgs"><span class="vctg">Presencial &middot; RJ</span><span class="vctg">CLT</span><span class="vctg">Opera&#231;&#245;es</span></div>
+        <div class="vcf"><span class="vcs">R$ 4.000 &#8211; 6.000</span><button class="btn-cnd" onclick="abrirTriagem('Log\u00EDstica')">Candidatar</button></div>
+      </div>
+      <div class="vgc reveal">
+        <div class="vca">&#9881;&#65039; Operacional</div>
+        <div class="vct">Auxiliar de Produ&#231;&#227;o</div>
+        <div class="vcd">Execu&#231;&#227;o de atividades operacionais com foco em qualidade, seguran&#231;a e cumprimento de procedimentos.</div>
+        <div class="vctgs"><span class="vctg">Presencial &middot; RJ</span><span class="vctg">CLT</span><span class="vctg">Ind&#250;stria</span></div>
+        <div class="vcf"><span class="vcs">R$ 1.800 &#8211; 2.400</span><button class="btn-cnd" onclick="abrirTriagem('Operacional')">Candidatar</button></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="cta-wrap" id="contato">
+  <div class="cnt">
+    <div class="stag" style="color:var(--gold);justify-content:center">Pronto para avan&#231;ar?</div>
+    <h2 class="sh" style="color:white;text-align:center">15 minutos decidem<br>sua pr&#243;xima <em style="color:var(--gold)">oportunidade.</em></h2>
+    <p class="ssub" style="text-align:center;margin:0 auto 40px">A triagem leva menos de 15 minutos. Voc&#234; recebe retorno independente do resultado. Seu perfil fica no nosso banco de talentos ativamente.</p>
+    <button class="btn-big" onclick="abrirTriagem()">&#127919; Iniciar Avalia&#231;&#227;o Agora &#8212; &#201; Gr&#225;tis</button>
+    <div style="margin-top:18px;font-size:.7rem;color:rgba(255,255,255,.22);position:relative;z-index:1">Sem taxa. Sem complica&#231;&#227;o. Resultado imediato.</div>
+  </div>
+</div>
+
+<footer>
+  <div class="ftg">
+    <div>
+      <div class="ftbrand">
+        <div class="bmark" style="width:34px;height:34px"><svg viewBox="0 0 24 24" style="width:18px;height:18px;fill:var(--gold)"><path d="M12,3L1,9L12,15L21,10.09V17H23V9M5,13.18V17.18L12,21L19,17.18V13.18L12,17L5,13.18Z"/></svg></div>
+        <div class="ftbn">TALENT<span>IQ</span></div>
+      </div>
+      <p class="ftd">Intelig&#234;ncia que conecta pessoas a resultados. Recrutamento baseado em dados, humanizado em cada etapa.</p>
+    </div>
+    <div class="ftcol"><h4>Candidatos</h4><ul><li onclick="abrirTriagem()">Iniciar Candidatura</li><li onclick="abrirVagas()">Ver Vagas</li><li onclick="abrirTriagem()">Banco de Talentos</li><li onclick="goTo('#funil')">Como Funciona</li></ul></div>
+    <div class="ftcol"><h4>Empresa</h4><ul><li onclick="goTo('#empresas')">Para Empresas</li><li>Nossa Metodologia</li><li>Oceano Azul</li><li>Contato</li></ul></div>
+    <div class="ftcol"><h4>TALENTIQ</h4><ul><li>Sobre N&#243;s</li><li>Blog RH</li><li>Pol&#237;tica de Privacidade</li><li>Termos de Uso</li></ul></div>
+  </div>
+  <div class="ftbot">
+    <div class="ftcp">&#169; 2026 TALENTIQ. Todos os direitos reservados.</div>
+    <div class="fttg">&#8220;Intelig&#234;ncia que conecta pessoas a resultados.&#8221;</div>
+  </div>
+</footer>
+
+<div id="vfs">
+  <div class="vfbar">
+    <button class="btn-bk" onclick="fecharVagas()">&#8592; Voltar ao Site</button>
+    <span class="vft">Vagas Abertas &#8212; TALENTIQ</span>
+  </div>
+  <iframe id="ifv" src="" style="flex:1;border:none"></iframe>
+</div>
+
+<div id="modal-triagem">
+  <div class="mtbox">
+    <div class="mthd">
+      <div><h2>Triagem Inteligente TALENTIQ</h2><p id="mtdesc">Etapa 1 de 4 &#8212; Dados Pessoais</p></div>
+      <button class="mtx" onclick="fecharTriagem()">&#215;</button>
+    </div>
+    <div class="mtprog">
+      <div class="mtsegs"><div class="mseg active" id="s1"></div><div class="mseg" id="s2"></div><div class="mseg" id="s3"></div><div class="mseg" id="s4"></div></div>
+      <div class="mtlbls"><span class="mtlbl active" id="l1">Dados</span><span class="mtlbl" id="l2">Fit Cultural</span><span class="mtlbl" id="l3">Racioc&#237;nio</span><span class="mtlbl" id="l4">Motivacional</span></div>
+    </div>
+    <div class="mtbody">
+      <div class="mtstep active" id="st1">
+        <div style="margin-bottom:20px"><div style="font-size:.7rem;font-weight:800;color:var(--teal);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:6px">Suas informa&#231;&#245;es</div><div style="font-size:.8rem;color:var(--muted);line-height:1.6">Preencha seus dados para iniciar a avalia&#231;&#227;o. Levamos menos de 15 minutos no total.</div></div>
+        <div class="fg2">
+          <div class="fg fgf"><label>Nome Completo *</label><input type="text" id="fnome" placeholder="Seu nome completo"></div>
+          <div class="fg"><label>E-mail *</label><input type="email" id="femail" placeholder="seu@email.com"></div>
+          <div class="fg"><label>Telefone / WhatsApp *</label><input type="text" id="ftel" placeholder="(21) 99999-0000"></div>
+          <div class="fg"><label>&#193;rea de Interesse *</label>
+            <select id="farea">
+              <option value="">&#8212; Selecione &#8212;</option>
+              <option value="Administrativo">Administrativo</option>
+              <option value="Log&#237;stica">Log&#237;stica</option>
+              <option value="Operacional">Operacional</option>
+              <option value="Lideran&#231;a">Lideran&#231;a</option>
+              <option value="Banco de Talentos">Banco de Talentos (Geral)</option>
+            </select>
+          </div>
+          <div class="fg"><label>Preten&#231;&#227;o Salarial</label><input type="text" id="fsal" placeholder="R$ 0.000,00"></div>
+          <div class="fg"><label>Cidade / Estado</label><input type="text" id="fcid" placeholder="Rio de Janeiro / RJ"></div>
+          <div class="fg fgf"><label>Resumo Profissional</label><textarea id="fres" placeholder="Experi&#234;ncias mais relevantes, forma&#231;&#227;o, diferenciais..."></textarea></div>
+        </div>
+      </div>
+      <div class="mtstep" id="st2">
+        <div style="margin-bottom:20px"><div style="font-size:.7rem;font-weight:800;color:var(--teal);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:6px">Bloco 1 &#8212; Fit Cultural &amp; Valores</div><div style="font-size:.8rem;color:var(--muted);line-height:1.6">Leia cada cen&#225;rio e escolha a resposta que melhor representa como voc&#234; age. N&#227;o h&#225; certo ou errado &#8212; h&#225; fit ou n&#227;o fit.</div></div>
+        <div id="fitqs"></div>
+      </div>
+      <div class="mtstep" id="st3">
+        <div style="margin-bottom:20px"><div style="font-size:.7rem;font-weight:800;color:var(--teal);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:6px">Bloco 2 &#8212; Racioc&#237;nio Situacional</div><div style="font-size:.8rem;color:var(--muted);line-height:1.6">Quest&#245;es contextualizadas na sua &#225;rea de interesse. Escolha a melhor resposta para cada situa&#231;&#227;o.</div></div>
+        <div id="logqs"></div>
+      </div>
+      <div class="mtstep" id="st4">
+        <div style="margin-bottom:20px"><div style="font-size:.7rem;font-weight:800;color:var(--teal);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:6px">Bloco 3 &#8212; Question&#225;rio Motivacional</div><div style="font-size:.8rem;color:var(--muted);line-height:1.6">Suas respostas ser&#227;o lidas com aten&#231;&#227;o pelo recrutador. Seja genu&#237;no &#8212; aqui voc&#234; se diferencia.</div></div>
+        <div class="motq"><label>Por que voc&#234; se interessou por esta &#225;rea de atua&#231;&#227;o?</label><textarea id="m1" placeholder="Seja espec&#237;fico sobre sua trajet&#243;ria e motiva&#231;&#227;o..."></textarea></div>
+        <div class="motq"><label>Qual foi seu maior desafio profissional e como voc&#234; superou?</label><textarea id="m2" placeholder="Descreva o contexto, sua a&#231;&#227;o e o resultado obtido..."></textarea></div>
+        <div class="motq"><label>O que voc&#234; espera aprender e entregar nos primeiros 3 meses?</label><textarea id="m3" placeholder="Seja realista e mostre autoconhecimento..."></textarea></div>
+      </div>
+      <div class="mtstep" id="st5"><div id="resf"></div></div>
+    </div>
+    <div class="mtfoot">
+      <div class="mtfi" id="mtfi">Todos os campos * s&#227;o obrigat&#243;rios</div>
+      <div class="mtbtns">
+        <button class="btn-bks" id="btnbk" onclick="stepBack()" style="display:none">&#8592; Voltar</button>
+        <button class="btn-nxt" id="btnnx" onclick="stepNext()">Continuar &rarr;</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="tw" id="twrap"></div>
+
+<script>
+const GS='https://script.google.com/macros/s/AKfycbxHdXxmy6QbQNz013NXOcDuuk1ANarcDrotyBgaQ5DjdUwHJVjNJWnVEB0pV1dcDK5ZHg/exec';
+const VS='https://oportunidades.mindsight.com.br/desenvolverh';
+const FIT=[
+  {t:'Seu prazo de entrega \u00e9 amanh\u00e3 de manh\u00e3. No final do expediente, voc\u00ea percebe que uma parte do trabalho vai sair incompleta. O que voc\u00ea faz?',o:[{t:'Entrego o que est\u00e1 pronto e explico o que faltou por e-mail.',v:1},{t:'Fico al\u00e9m do hor\u00e1rio para terminar sem avisar ningu\u00e9m.',v:0},{t:'Comunico imediatamente ao gestor e apresento um plano para finalizar.',v:2},{t:'Pe\u00e7o ajuda a um colega para dividir o que falta.',v:2}]},
+  {t:'Voc\u00ea identifica um erro em um processo que n\u00e3o \u00e9 diretamente de sua responsabilidade. Esse erro pode afetar outros departamentos. O que voc\u00ea faz?',o:[{t:'Ignoro \u2014 n\u00e3o \u00e9 minha fun\u00e7\u00e3o reportar isso.',v:0},{t:'Corrijo por conta pr\u00f3pria sem avisar ningu\u00e9m.',v:1},{t:'Comunico \u00e0 pessoa respons\u00e1vel e ofe\u00e7o ajuda se necess\u00e1rio.',v:2},{t:'Registro formalmente e espero a reuni\u00e3o de equipe para mencionar.',v:1}]},
+  {t:'Um processo que voc\u00ea executa h\u00e1 meses vai ser completamente mudado sem aviso pr\u00e9vio. Sua rea\u00e7\u00e3o imediata \u00e9:',o:[{t:'Frustra\u00e7\u00e3o \u2014 prefiro m\u00e9todos estabelecidos e testados.',v:0},{t:'Curiosidade \u2014 quero entender o motivo da mudan\u00e7a antes de agir.',v:2},{t:'Indiferen\u00e7a \u2014 processo \u00e9 processo, basta executar.',v:1},{t:'Preocupa\u00e7\u00e3o \u2014 questiono se a mudan\u00e7a foi bem planejada.',v:1}]},
+  {t:'Voc\u00ea comete um erro que atrasa o trabalho da sua equipe. O que voc\u00ea faz?',o:[{t:'Espero algu\u00e9m perceber e ent\u00e3o explico o que aconteceu.',v:0},{t:'Assumo o erro imediatamente, pe\u00e7o desculpas e proponho como vou resolver.',v:2},{t:'Resolvo sozinho sem comentar com a equipe para n\u00e3o gerar constrangimento.',v:1},{t:'Explico o contexto que levou ao erro antes de pedir desculpas.',v:1}]},
+  {t:'Voc\u00ea e um colega discordam sobre a melhor forma de executar uma tarefa. O prazo \u00e9 curto. O que voc\u00ea faz?',o:[{t:'Cedo para evitar conflito e deixamos como o colega prop\u00f4s.',v:0},{t:'Fa\u00e7o do meu jeito \u2014 tenho mais experi\u00eancia no assunto.',v:1},{t:'Proponho discutirmos rapidamente os pr\u00f3s e contras e decidirmos juntos.',v:2},{t:'Escalo para o gestor decidir \u2014 n\u00e3o temos tempo para debate.',v:1}]}
+];
+const LOG={
+  'Administrativo':[
+    {t:'Voc\u00ea recebe 4 tarefas urgentes: (A) relat\u00f3rio para o diretor em 2h, (B) reuni\u00e3o com cliente em 30min, (C) pagamento de fornecedor que vence hoje, (D) responder 15 e-mails. Qual a ordem correta?',o:['B, C, A, D','A, B, C, D','C, A, B, D','B, A, C, D'],c:0},
+    {t:'Uma planilha mostra 120 unidades. Houve 3 entradas de 15 unidades e 5 sa\u00eddas de 12 unidades. Qual o saldo atual?',o:['105 unidades','165 unidades','105 unidades','135 unidades'],c:2},
+    {t:'O gestor pediu \u201clinguagem acess\u00edvel e objetiva\u201d no comunicado. Qual op\u00e7\u00e3o N\u00c3O segue essa orienta\u00e7\u00e3o?',o:['Use bullet points para informa\u00e7\u00f5es-chave','Evite termos t\u00e9cnicos sem explica\u00e7\u00e3o','Inicie com a decis\u00e3o mais importante','Utilize vocabul\u00e1rio rebuscado para demonstrar dom\u00ednio t\u00e9cnico'],c:3},
+    {t:'A sequ\u00eancia num\u00e9rica 3, 6, 12, 24, ___ segue qual padr\u00e3o?',o:['Soma de 6','Multiplica\u00e7\u00e3o por 2','Soma do n\u00famero anterior','Pot\u00eancias de 2'],c:1},
+    {t:'Um arquivo percorre 3 etapas: ger\u00eancia (2 dias), diretoria (3 dias), jur\u00eddico (1 dia). Iniciou segunda-feira. Quando estar\u00e1 aprovado?',o:['Quinta-feira','Sexta-feira','Segunda seguinte','Ter\u00e7a seguinte'],c:0}
+  ],
+  'Log\u00EDstica':[
+    {t:'Caminh\u00e3o com capacidade de 10t. Cargas: A(3,2t), B(2,8t), C(1,5t), D(4,1t). Qual combina\u00e7\u00e3o otimiza sem exceder o limite?',o:['A+B+C = 7,5t','A+B+D = 10,1t','B+C+D = 8,4t','A+C+D = 8,8t'],c:3},
+    {t:'Produto chegando 2 dias atrasado sistematicamente do fornecedor. Qual a a\u00e7\u00e3o mais estrat\u00e9gica?',o:['Registrar e aguardar a pr\u00f3xima entrega','Calcular impacto no estoque e antecipar os pedidos','Trocar de fornecedor imediatamente','Avisar o cliente que haver\u00e1 atraso'],c:1},
+    {t:'No recebimento, 2 caixas com embalagem danificada, mas o produto parece intacto. O que fazer?',o:['Receber normalmente \u2014 o produto est\u00e1 ok','Devolver as 2 caixas sem conferir','Registrar a ocorr\u00eancia, conferir o produto e decidir com o gestor','Aceitar e comunicar o cliente'],c:2},
+    {t:'Rota com 4 paradas: A(10km), B(25km de A), C(15km de B), D(20km de C). Retorno 30km. Dist\u00e2ncia total?',o:['100km','70km','90km','110km'],c:0},
+    {t:'Seu turno termina em 1h. Carga urgente que levar\u00e1 1h30min chegou agora. O que voc\u00ea faz?',o:['Come\u00e7a e passa para o pr\u00f3ximo turno sem comunicar','Ignora \u2014 \u00e9 responsabilidade do pr\u00f3ximo turno','Comunica ao supervisor imediatamente para planejar a a\u00e7\u00e3o','Recusa a carga por protocolo de hor\u00e1rio'],c:2}
+  ],
+  'Operacional':[
+    {t:'Antes de operar um equipamento, voc\u00ea percebe que o EPI espec\u00edfico est\u00e1 danificado. Qual o procedimento correto?',o:['Opera normalmente \u2014 o dano \u00e9 pequeno','Para a atividade e comunica ao respons\u00e1vel por seguran\u00e7a','Improvisa uma prote\u00e7\u00e3o alternativa','Opera rapidamente para n\u00e3o atrasar a produ\u00e7\u00e3o'],c:1},
+    {t:'Voc\u00ea est\u00e1 na linha de produ\u00e7\u00e3o e 3 pe\u00e7as consecutivas sa\u00edram fora do padr\u00e3o. O que voc\u00ea faz primeiro?',o:['Separa as pe\u00e7as e continua para n\u00e3o parar a linha','Para a linha e comunica imediatamente o supervisor','Tenta ajustar o equipamento por conta pr\u00f3pria','Descarta as pe\u00e7as e registra no relat\u00f3rio'],c:1},
+    {t:'A instru\u00e7\u00e3o de trabalho diz para usar 5ml do produto. Voc\u00ea acha que 8ml daria melhor resultado. O que voc\u00ea faz?',o:['Usa 8ml \u2014 a experi\u00eancia conta mais','Usa 5ml e registra sua sugest\u00e3o para an\u00e1lise','Usa 8ml e n\u00e3o documenta','Pede para o colega mais experiente decidir'],c:1},
+    {t:'Ao final do turno, a meta de produ\u00e7\u00e3o n\u00e3o foi atingida. O mais importante \u00e9:',o:['N\u00e3o comunicar para n\u00e3o gerar press\u00e3o','Registrar o resultado e as causas no relat\u00f3rio de turno','Ficar al\u00e9m do hor\u00e1rio sem avisar','Culpar o equipamento no relat\u00f3rio'],c:1},
+    {t:'Dois colegas discutem alto pr\u00f3ximo a um equipamento em opera\u00e7\u00e3o. Qual o risco imediato identificado?',o:['Nenhum \u2014 discuss\u00e3o n\u00e3o afeta produ\u00e7\u00e3o','Distrao que pode gerar acidente com o equipamento','Queda de produtividade apenas','Conflito de equipe para o RH resolver'],c:1}
+  ],
+  'Lideran\u00e7a':[
+    {t:'Membro da equipe, antes de alto desempenho, apresentou queda brusca nas \u00faltimas semanas. Qual sua primeira a\u00e7\u00e3o?',o:['Chama para conversa sobre performance e metas','Emite advert\u00eancia formal para registrar','Conversa individualmente para entender o que est\u00e1 acontecendo','Remaneja para fun\u00e7\u00e3o menos exigente'],c:2},
+    {t:'Dois colaboradores em conflito pessoal precisam trabalhar juntos em projeto cr\u00edtico. Voc\u00ea:',o:['Separa em projetos diferentes para evitar atrito','Media um encontro estruturado para alinhar expectativas profissionais','Deixa o conflito se resolver naturalmente','Escolhe o de melhor desempenho para liderar'],c:1},
+    {t:'Equipe com meta desafiadora e moral baixo. Colaborador vem reclamar. Sua resposta mais eficaz \u00e9:',o:['"Entendo, mas precisamos focar nos resultados"','"Todos estamos sob press\u00e3o, n\u00e3o \u00e9 s\u00f3 voc\u00ea"','Ouvir sem interromper, validar o sentimento e explorar solu\u00e7\u00f5es juntos','"Leve suas queixas para o RH"'],c:2},
+    {t:'Precisa delegar tarefa complexa. O colaborador mais capacitado est\u00e1 sobrecarregado. O que voc\u00ea faz?',o:['Delega para o sobrecarregado mesmo \u2014 ele \u00e9 o melhor','Faz voc\u00ea mesmo para garantir a qualidade','Avalia redistribuir carga antes de delegar e comunica o porqu\u00ea','Delega para o menos ocupado sem preparo pr\u00e9vio'],c:2},
+    {t:'Seu gestor muda uma decis\u00e3o que voc\u00ea j\u00e1 comunicou \u00e0 equipe. Como voc\u00ea procede?',o:['Revela que voc\u00ea discorda da mudan\u00e7a','Comunica a mudan\u00e7a de forma neutra, explicando o contexto sem comprometer ningu\u00e9m','Adia a comunica\u00e7\u00e3o esperando nova mudan\u00e7a','Exige que o gestor comunique diretamente'],c:1}
+  ],
+  'Banco de Talentos':[
+    {t:'3 tarefas: A (urgente e importante), B (urgente mas n\u00e3o importante) e C (importante mas n\u00e3o urgente). Ordem correta pela Matriz de Eisenhower?',o:['B, A, C','A, C, B','A, B, C','C, A, B'],c:2},
+    {t:'Um trabalho leva 3h sozinho e com 2 pessoas leva 1h45min. O que explica?',o:['Paradoxo da produtividade','Sinergia e divis\u00e3o estrat\u00e9gica de tarefas','Coincid\u00eancia de desempenho','Redu\u00e7\u00e3o de qualidade'],c:1},
+    {t:'Recebeu tarefa com instru\u00e7\u00f5es pouco claras. O prazo \u00e9 curto. O que voc\u00ea faz?',o:['Faz como achar melhor para n\u00e3o perder tempo','Pede esclarecimentos imediatos sobre os pontos cr\u00edticos','Espera algu\u00e9m perceber e dar mais detalhes','Devolve a tarefa dizendo que as instru\u00e7\u00f5es s\u00e3o insuficientes'],c:1},
+    {t:'Qual situa\u00e7\u00e3o representa melhor "proatividade" no trabalho?',o:['Fazer sua tarefa dentro do prazo','Resolver um problema antes que ele seja reportado','Pedir mais tarefas quando terminar as suas','Perguntar ao gestor o que fazer em seguida'],c:1},
+    {t:'Cliente interno reclama por e-mail com tom agressivo, mas a reclama\u00e7\u00e3o tem fundamento. Sua resposta ideal \u00e9:',o:['Responde com o mesmo tom para se defender','Ignora o e-mail e fala pessoalmente','Reconhece o problema, pede desculpas e apresenta a solu\u00e7\u00e3o','Encaminha para o gestor resolver'],c:2}
+  ]
+};
+let STP=1,AREA='',fitA=[],logA=[];
+function abrirVagas(){document.getElementById('vfs').style.display='flex';document.getElementById('ifv').src=VS;document.body.style.overflow='hidden';}
+function fecharVagas(){document.getElementById('vfs').style.display='none';document.getElementById('ifv').src='';document.body.style.overflow='';}
+function abrirTriagem(a=''){STP=1;fitA=[];logA=[];const m=document.getElementById('modal-triagem');m.classList.add('open');document.body.style.overflow='hidden';if(a){const fa=document.getElementById('farea');if(fa)fa.value=a;}AREA=a||'';upd();renderFit();}
+function fecharTriagem(){document.getElementById('modal-triagem').classList.remove('open');document.body.style.overflow='';}
+document.getElementById('modal-triagem').addEventListener('click',function(e){if(e.target===this)fecharTriagem();});
+function upd(){
+  document.querySelectorAll('.mtstep').forEach((s,i)=>s.classList.toggle('active',i===STP-1));
+  [1,2,3,4].forEach(i=>{const s=document.getElementById('s'+i),l=document.getElementById('l'+i);if(i<STP){s.className='mseg done';l.className='mtlbl';}else if(i===STP){s.className='mseg active';l.className='mtlbl active';}else{s.className='mseg';l.className='mtlbl';}});
+  const ds=['Etapa 1 de 4 \u2014 Dados Pessoais','Etapa 2 de 4 \u2014 Fit Cultural & Valores','Etapa 3 de 4 \u2014 Racioc\u00ednio Situacional','Etapa 4 de 4 \u2014 Question\u00e1rio Motivacional','Resultado da Triagem'];
+  document.getElementById('mtdesc').textContent=ds[Math.min(STP-1,4)];
+  const bb=document.getElementById('btnbk'),bn=document.getElementById('btnnx');
+  bb.style.display=STP>1&&STP<5?'block':'none';
+  if(STP===5){bn.style.display='none';}else if(STP===4){bn.textContent='\u2713 Finalizar e Ver Resultado';bn.style.display='block';}else{bn.textContent='Continuar \u2192';bn.style.display='block';}
+  const inf={1:'Todos os campos * s\u00e3o obrigat\u00f3rios',2:'Fit Cultural \u00b7 '+FIT.length+' cen\u00e1rios',3:'Racioc\u00ednio '+(AREA||'Geral')+' \u00b7 5 quest\u00f5es',4:'Motivacional \u00b7 3 perguntas abertas',5:''};
+  document.getElementById('mtfi').textContent=inf[STP]||'';
+}
+function stepNext(){
+  if(STP===1){if(!vD())return;AREA=document.getElementById('farea').value||'Banco de Talentos';renderLog();STP=2;}
+  else if(STP===2){if(!vF())return;STP=3;}
+  else if(STP===3){if(!vL())return;STP=4;}
+  else if(STP===4){if(!vM())return;fin();return;}
+  upd();
+}
+function stepBack(){if(STP>1&&STP<5){STP--;upd();}}
+function vD(){const n=document.getElementById('fnome').value.trim(),e=document.getElementById('femail').value.trim(),t=document.getElementById('ftel').value.trim(),a=document.getElementById('farea').value;if(!n||!e||!t||!a){toast('\u26a0\ufe0f Preencha todos os campos obrigat\u00f3rios.','danger');return false;}if(!e.includes('@')){toast('\u26a0\ufe0f E-mail inv\u00e1lido.','danger');return false;}return true;}
+function vF(){const total=FIT.length;const resp=new Set([...document.querySelectorAll('#fitqs .qopt.sel')].map(el=>el.closest('.qblk').dataset.idx));if(resp.size<total){toast('\u26a0\ufe0f Responda todos os '+total+' cen\u00e1rios.','danger');return false;}fitA=[...Array(total).keys()].map(i=>{const s=document.querySelector('#fitqs .qblk[data-idx="'+i+'"] .qopt.sel');return s?parseInt(s.dataset.v||0):0;});return true;}
+function vL(){const qs=document.querySelectorAll('#logqs .qblk');logA=[];let ok=true;qs.forEach((q,i)=>{const s=q.querySelector('.qopt.sel');if(!s){toast('\u26a0\ufe0f Responda a quest\u00e3o '+(i+1)+'.','danger');ok=false;return;}logA.push(parseInt(s.dataset.oi)===parseInt(q.dataset.c)?1:0);});return ok;}
+function vM(){const m1=document.getElementById('m1').value.trim(),m2=document.getElementById('m2').value.trim(),m3=document.getElementById('m3').value.trim();if(!m1||!m2||!m3){toast('\u26a0\ufe0f Responda as 3 perguntas motivacionais.','danger');return false;}if(m1.length<20||m2.length<20||m3.length<20){toast('\u26a0\ufe0f Respostas muito curtas. Elabore um pouco mais.','danger');return false;}return true;}
+function renderFit(){document.getElementById('fitqs').innerHTML=FIT.map((q,i)=>'<div class="qblk" data-idx="'+i+'"><div class="qhd"><div class="qnum">'+(i+1)+'</div><div class="qtxt">'+q.t+'</div></div><div class="qopts">'+q.o.map((op,oi)=>'<div class="qopt" data-v="'+op.v+'" onclick="sel(this)"><div class="qcirc"></div><div class="qopt-t">'+op.t+'</div></div>').join('')+'</div></div>').join('');}
+function renderLog(){const a=AREA in LOG?AREA:'Banco de Talentos';const qs=LOG[a];document.getElementById('logqs').innerHTML=qs.map((q,i)=>'<div class="qblk" data-idx="'+i+'" data-c="'+q.c+'"><div class="qhd"><div class="qnum">'+(i+1)+'</div><div class="qtxt">'+q.t+'</div></div><div class="qopts">'+q.o.map((op,oi)=>'<div class="qopt" data-oi="'+oi+'" onclick="sel(this)"><div class="qcirc"></div><div class="qopt-t">'+String.fromCharCode(65+oi)+') '+op+'</div></div>').join('')+'</div></div>').join('');}
+function sel(el){const b=el.closest('.qblk');b.querySelectorAll('.qopt').forEach(o=>o.classList.remove('sel'));el.classList.add('sel');}
+async function fin(){
+  document.getElementById('btnnx').disabled=true;document.getElementById('btnnx').textContent='Calculando...';
+  const fMax=FIT.length*2,fTot=fitA.reduce((s,v)=>s+v,0),fP=Math.round((fTot/fMax)*100);
+  const lP=Math.round((logA.reduce((s,v)=>s+v,0)/logA.length)*100);
+  const m1=document.getElementById('m1').value.trim(),m2=document.getElementById('m2').value.trim(),m3=document.getElementById('m3').value.trim();
+  const mP=[m1,m2,m3].filter(m=>m.length>=20).length===3?100:60;
+  const tot=Math.round(fP*0.4+lP*0.4+mP*0.2),pass=tot>=65;
+  STP=5;upd();
+  document.getElementById('resf').innerHTML='<div class="res-box '+(pass?'pass':'pool')+'"><span class="res-ic">'+(pass?'\u2b50':'\ud83d\udcc1')+'</span><div class="res-pct">'+tot+'%</div><div class="res-lbl">'+(pass?'Parab\u00e9ns \u2014 Voc\u00ea avan\u00e7ou para a entrevista!':'Perfil adicionado ao Banco de Talentos')+'</div><p class="res-desc">'+(pass?'Seu score de triagem foi '+tot+'%, acima do m\u00ednimo de 65%. Em breve nosso time entrar\u00e1 em contato para agendar sua entrevista. Fique atento ao e-mail e WhatsApp!':'Seu score foi '+tot+'%. O m\u00ednimo para avan\u00e7ar neste ciclo \u00e9 65%. Seu perfil permanece ativo \u2014 quando surgir oportunidade alinhada, voc\u00ea ser\u00e1 o primeiro a saber.')+'</p></div><div class="res-bd"><div class="rbd"><div class="rbd-sc" style="color:'+(fP>=65?'var(--teal)':'var(--muted)')+'">'+fP+'%</div><div class="rbd-lb">Fit Cultural</div></div><div class="rbd"><div class="rbd-sc" style="color:'+(lP>=50?'var(--teal)':'var(--muted)')+'">'+lP+'%</div><div class="rbd-lb">Racioc\u00ednio</div></div><div class="rbd"><div class="rbd-sc" style="color:var(--teal)">'+mP+'%</div><div class="rbd-lb">Motivacional</div></div></div><div style="text-align:center;font-size:.76rem;color:var(--muted);padding-bottom:8px">'+(pass?'<strong style="color:var(--teal)">Pr\u00f3ximo passo:</strong> aguarde contato em at\u00e9 2 dias \u00fateis.':'<strong>Seu perfil ficar\u00e1 ativo</strong> para futuras vagas alinhadas ao seu perfil.')+'</div>';
+  try{await fetch(GS,{method:'POST',mode:'no-cors',body:JSON.stringify({itens:[{nome:document.getElementById('fnome').value,email:document.getElementById('femail').value,telefone:document.getElementById('ftel').value,vaga:document.getElementById('farea').value,pretensao:document.getElementById('fsal').value,cidade:document.getElementById('fcid').value,resumo:document.getElementById('fres').value,score_fit:fP,score_logica:lP,score_motivacional:mP,score_total:tot,status:pass?'Pr\u00e9-Selecionado':'Em An\u00e1lise',triagem_resultado:pass?'Aprovado':'Banco de Talentos',mot_1:m1,mot_2:m2,mot_3:m3,data:new Date().toLocaleDateString('pt-BR')}]})});toast('\u2705 Candidatura registrada com sucesso!','success');}catch(e){toast('\u26a0\ufe0f Erro ao salvar. Tente novamente.','danger');}
+}
+function goTo(sel){const el=document.querySelector(sel);if(el)el.scrollIntoView({behavior:'smooth',block:'start'});}
+function toast(msg,type=''){const w=document.getElementById('twrap');const t=document.createElement('div');t.className='tm '+type;t.textContent=msg;w.appendChild(t);setTimeout(()=>t.remove(),4500);}
+window.addEventListener('scroll',()=>document.getElementById('sh').classList.toggle('scrolled',scrollY>60));
+const ro=new IntersectionObserver(en=>en.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis');}),{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
+const sbObs=new IntersectionObserver(en=>{if(en[0].isIntersecting){setTimeout(()=>{document.getElementById('sbc').style.width='80%';document.getElementById('sbl').style.width='60%';document.getElementById('sbm').style.width='100%';animN('sbf',0,76,'%',1400);},300);sbObs.disconnect();}},{threshold:.3});
+const sbEl=document.querySelector('.sbox');if(sbEl)sbObs.observe(sbEl);
+const obObs=new IntersectionObserver(en=>{if(en[0].isIntersecting){setTimeout(()=>{[['obu1',87],['obu2',94],['obu3',91]].forEach(([id,v])=>{const el=document.getElementById(id);if(el){el.style.transition='width 1.5s cubic-bezier(.4,0,.2,1)';el.style.width=v+'%';}});},400);obObs.disconnect();}},{threshold:.3});
+const obEl=document.querySelector('.ob-vis');if(obEl)obObs.observe(obEl);
+function animN(id,from,to,suf,dur){const el=document.getElementById(id);if(!el)return;const start=performance.now();(function step(now){const p=Math.min((now-start)/dur,1),e=p<.5?2*p*p:(4-2*p)*p-1;el.textContent=Math.round(from+(to-from)*e)+suf;if(p<1)requestAnimationFrame(step);})(start);}
+</script>
+</body>
+</html>
