@@ -394,7 +394,7 @@ footer{background:linear-gradient(160deg,#020d0d,var(--dark));padding:80px 40px 
   .ob-lbl{flex:0 0 130px;font-size:.65rem}
 
   /* FUNIL */
-  .fn-steps{grid-template-columns:1fr 1fr;gap:28px 16px}
+  .fn-steps{grid-template-columns:1fr 1fr;gap:16px}
   .fn-steps::before{display:none}
   .fn-step{padding:0 8px}
 
@@ -458,10 +458,15 @@ footer{background:linear-gradient(160deg,#020d0d,var(--dark));padding:80px 40px 
   .pn{font-size:.6rem;letter-spacing:1.5px}
 
   /* FUNIL */
-  .fn-steps{grid-template-columns:1fr}
-  .fn-step{padding:0;display:grid;grid-template-columns:56px 1fr;gap:16px;align-items:start;text-align:left}
-  .fn-num{margin:0;flex-shrink:0}
-  .fn-lbl,.fn-desc,.fn-bdg{text-align:left}
+  .fn-steps{grid-template-columns:1fr;gap:12px}
+  .fn-step{padding:18px 20px;background:white;border-radius:14px;border:1.5px solid var(--bdr);display:flex;align-items:flex-start;gap:18px;text-align:left;box-shadow:0 2px 12px rgba(12,93,89,.06)}
+  .fn-step.hl{border-color:var(--teal);background:rgba(12,93,89,.03)}
+  .fn-num{width:48px;height:48px;flex-shrink:0;margin:0;font-size:1.1rem}
+  .fn-step-txt{flex:1;min-width:0}
+  .fn-lbl{text-align:left;margin-bottom:6px}
+  .fn-desc{text-align:left}
+  .fn-bdg{display:block;text-align:left;margin-top:8px}
+  .fn-steps::before{display:none}
 
   /* VAGAS */
   .vgcards{grid-template-columns:1fr}
@@ -613,10 +618,10 @@ footer{background:linear-gradient(160deg,#020d0d,var(--dark));padding:80px 40px 
       <p class="ssub">Cada etapa elimina por um crit&#233;rio diferente. Sem misturar crit&#233;rios, sem vi&#233;s, sem achismo. Ci&#234;ncia aplicada ao recrutamento.</p>
     </div>
     <div class="fn-steps reveal">
-      <div class="fn-step"><div class="fn-num">&#128221;</div><div class="fn-lbl">Cadastro</div><div class="fn-desc">Dados pessoais e &#225;rea de interesse em menos de 3 minutos.</div></div>
-      <div class="fn-step hl"><div class="fn-num">&#129504;</div><div class="fn-lbl">Triagem Inteligente</div><div class="fn-desc">3 blocos de avalia&#231;&#227;o automatizada &#8212; fit cultural, racioc&#237;nio e motiva&#231;&#227;o.</div><span class="fn-bdg">Exclusivo TALENTIQ</span></div>
-      <div class="fn-step"><div class="fn-num">&#127909;</div><div class="fn-lbl">Entrevista</div><div class="fn-desc">Apenas candidatos com score &#8805;65% s&#227;o convocados para entrevista.</div></div>
-      <div class="fn-step"><div class="fn-num">&#129309;</div><div class="fn-lbl">Admiss&#227;o</div><div class="fn-desc">Pr&#233;-selecionados avan&#231;am para proposta e documenta&#231;&#227;o de admiss&#227;o.</div></div>
+      <div class="fn-step"><div class="fn-num">&#128221;</div><div class="fn-step-txt"><div class="fn-lbl">Cadastro</div><div class="fn-desc">Dados pessoais e &#225;rea de interesse em menos de 3 minutos.</div></div></div>
+      <div class="fn-step hl"><div class="fn-num">&#129504;</div><div class="fn-step-txt"><div class="fn-lbl">Triagem Inteligente</div><div class="fn-desc">3 blocos de avalia&#231;&#227;o automatizada &#8212; fit cultural, racioc&#237;nio e motiva&#231;&#227;o.</div><span class="fn-bdg">Exclusivo TALENTIQ</span></div></div>
+      <div class="fn-step"><div class="fn-num">&#127909;</div><div class="fn-step-txt"><div class="fn-lbl">Entrevista</div><div class="fn-desc">Apenas candidatos com score &#8805;65% s&#227;o convocados para entrevista.</div></div></div>
+      <div class="fn-step"><div class="fn-num">&#129309;</div><div class="fn-step-txt"><div class="fn-lbl">Admiss&#227;o</div><div class="fn-desc">Pr&#233;-selecionados avan&#231;am para proposta e documenta&#231;&#227;o de admiss&#227;o.</div></div></div>
     </div>
   </div>
 </div>
